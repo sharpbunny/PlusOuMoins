@@ -12,7 +12,7 @@ namespace Plus_Ou_Moins
         static void Main(string[] args)
         {
             // DECLARATION DES VARIABLES
-            int numberRandomized, miniRandom = 0, maxiRandom = 100, numberUser = miniRandom - 1; ; bool Conversion = false; // Initialisation.
+            int numberRandomized, miniRandom = 0, maxiRandom = 100, numberUser = miniRandom - 1; bool Conversion = false; // Initialisation.
 
 		    numberRandomized = numberRandomizer.Next(miniRandom, maxiRandom); // Génération du nombre.
 
