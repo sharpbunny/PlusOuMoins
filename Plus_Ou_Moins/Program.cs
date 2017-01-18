@@ -15,15 +15,20 @@ namespace Plus_Ou_Moins
 			string userInput= Console.ReadLine(); // Input de l'utilisateur.
 			bool Conversion = int.TryParse(userInput, out numberUser); // Conversion de l'input de l'utilisateur en int.
 
+            //Si le nombre du joueur est supérieur au nombre aléatoire
 			if (numberRandomized < numberUser)
 			{
 				Console.WriteLine("Trop grand !");
 			}
-			else if (numberRandomized > numberUser)
+
+            //Si le nombre du joueur est inférieur au nombre aléatoire
+            else if (numberRandomized > numberUser)
 			{
 				Console.WriteLine("Trop petit !");
 			}
-			else if (numberRandomized == numberUser)
+
+            //Si le nombre du joueur est égal au nombre aléatoire
+            else if (numberRandomized == numberUser)
 			{
 				Console.WriteLine("Félicitation, vous avez trouvé le nombre !");
 			}
