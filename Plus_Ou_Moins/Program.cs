@@ -18,6 +18,7 @@ namespace Plus_Ou_Moins
 
             Console.WriteLine("Entrez un nombre entre {0} et {1}", miniRandom, maxiRandom);
 
+            // BOUCLE DU JEU
 			while (numberUser != numberRandomized)
 			{
 			  // Cette boucle va nous permettre de tester si le joueur entre un nombre valide.
