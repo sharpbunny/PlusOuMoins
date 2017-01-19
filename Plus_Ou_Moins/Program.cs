@@ -18,7 +18,7 @@ namespace Plus_Ou_Moins
 			//*******************************
 
 			int numberRandomized, miniRandom = 0, maxiRandom = 100, numberUser = miniRandom - 1, choixMenuPrincipal;
-			bool conversion = false, exit = false;
+			bool conversion = false;
 			string reponse = ""; // Variable qui permettra de savoir si le joueur compte rejouer ou non
 			int numberTry = 1;
 
