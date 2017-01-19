@@ -153,6 +153,7 @@ namespace Plus_Ou_Moins
         {
             int borneInferieure, borneSuperieure, nombreADeviner, nombreIntermediaire; //variables déterminées par le joueur
             int nombreJoueParLOrdinateur, numberTryComputer;
+            Random nbAleatoire = new Random();
             string reponse = "";
 
             do
@@ -179,27 +180,24 @@ namespace Plus_Ou_Moins
                 do
                 {
                     numberTryComputer++;
-                    //A chaque tour l'ordinateur prend le nombre médian entre la borne inférieure et la borne supérieure
-                    nombreJoueParLOrdinateur = (borneInferieure + borneSuperieure) / 2;
 
-                    //Si le nombre que l'ordinateur a joué est supérieur au nombre à deviner, alors
-                    //la borne supérieure devient égale au nombre que vient de jouer l'ordinateur, car
-                    //il vient d'obtenir l'information que le nombre qu'il cherche ne sera pas supérieur
-                    //au nombre qu'il vient d'essayer.
-                    if (nombreJoueParLOrdinateur > nombreADeviner)
+                    //Si l'écart entre les bornes est supérieur à 25, l'ordinateur choisit le nombre du milieu
+                    if (borneSuperieure - borneInferieure <= 25)
                     {
-                        borneSuperieure = nombreJoueParLOrdinateur;
+                        //A chaque tour l'ordinateur prend le nombre médian entre la borne inférieure et la borne supérieure
+                        nombreJoueParLOrdinateur = (borneInferieure + borneSuperieure) / 2;
+                        redefinitionDesBornes(borneInferieure, borneSuperieure, nombreJoueParLOrdinateur, nombreADeviner, numberTryComputer);
+
                     }
 
-                    else if (nombreJoueParLOrdinateur < nombreADeviner)
-                    {
-                        borneInferieure = nombreJoueParLOrdinateur;
-                    }
-
+                    //Dés que l'écart entre les bornes est inférieur à 25, l'ordinateur choisit des nombres
+                    //aléatoirement entre ces bornes
                     else
                     {
-                        Console.WriteLine("L'ordinateur a trouvé le nombre en " + numberTryComputer + " essai" + ((numberTryComputer > 1) ? "s" : "") + "!");
+                        nombreJoueParLOrdinateur = nbAleatoire.Next(borneInferieure, borneSuperieure);
+                        redefinitionDesBornes(borneInferieure, borneSuperieure, nombreJoueParLOrdinateur, nombreADeviner, numberTryComputer);
                     }
+
 
                 } while (nombreJoueParLOrdinateur != nombreADeviner); //Tant que l'ordinateur n'a pas trouvé le nombre mystère, on reste dans la boucle.
 
@@ -212,6 +210,28 @@ namespace Plus_Ou_Moins
 
             } while (reponse == "yes");
            
+        }
+
+        static void redefinitionDesBornes(int borneInf, int borneSup, int nbJoue, int nbMystere, int nbEssaisOrdi)
+        {
+            //Si le nombre que l'ordinateur a joué est supérieur au nombre à deviner, alors
+            //la borne supérieure devient égale au nombre que vient de jouer l'ordinateur, car
+            //il vient d'obtenir l'information que le nombre qu'il cherche ne sera pas supérieur
+            //au nombre qu'il vient d'essayer.
+            if (nbJoue > nbMystere)
+            {
+                borneSup = nbJoue;
+            }
+
+            else if (nbJoue < nbMystere)
+            {
+                borneInf = nbJoue;
+            }
+
+            else
+            {
+                Console.WriteLine("L'ordinateur a trouvé le nombre en " + nbEssaisOrdi + " essai" + ((nbEssaisOrdi > 1) ? "s" : "") + "!");
+            }
         }
 
     }
