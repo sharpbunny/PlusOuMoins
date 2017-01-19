@@ -17,7 +17,7 @@ namespace Plus_Ou_Moins
 			//   DECLARATION DES VARIABLES
 			//*******************************
 
-			int numberRandomized, miniRandom = 0, maxiRandom = 100, numberUser = miniRandom - 1;
+			int numberRandomized, miniRandom = 0, maxiRandom = 100, numberUser = miniRandom - 1, choixMenuPrincipal;
 			bool conversion = false, exit = false;
 			string reponse = ""; // Variable qui permettra de savoir si le joueur compte rejouer ou non
 			int numberTry = 1;
@@ -26,76 +26,102 @@ namespace Plus_Ou_Moins
 			//     LA PARTIE
 			//**********************
 
-
-			do//Condition pour rejouer une partie
+			choixMenuPrincipal = MenuPrincipal();
+			switch (choixMenuPrincipal)
 			{
-				numberRandomized = numberRandomizer.Next(miniRandom, maxiRandom); // Génération du nombre à trouver
 
-				Console.WriteLine("Entrez un nombre entre {0} et {1}", miniRandom, maxiRandom);
+				case 1: //LE JOUEUR CHOISIT DE JOUER
 
-				// BOUCLE DU JEU
-				while (numberUser != numberRandomized)
-				{
-
-					// Cette boucle va nous permettre de tester si le joueur entre un nombre valide.
-					do
+					do//Condition pour rejouer une partie
 					{
-						string userInput = Console.ReadLine(); // Input de l'utilisateur.
-															   /// La ligne ci-dessous assigne un nombre entier dans une variable booléen
-						conversion = int.TryParse(userInput, out numberUser); // Conversion de l'input de l'utilisateur en int.
-						if (!conversion)
+						numberRandomized = numberRandomizer.Next(miniRandom, maxiRandom); // Génération du nombre à trouver
+
+						Console.WriteLine("Entrez un nombre entre {0} et {1}", miniRandom, maxiRandom);
+
+						// BOUCLE DU JEU
+						while (numberUser != numberRandomized)
 						{
-							Console.WriteLine("Entrez un nombre valide !");
-						}
 
-					} while (!conversion && (numberUser >= miniRandom && numberUser <= maxiRandom));
+							// Cette boucle va nous permettre de tester si le joueur entre un nombre valide.
+							do
+							{
+								string userInput = Console.ReadLine(); // Input de l'utilisateur.
+																	   /// La ligne ci-dessous assigne un nombre entier dans une variable booléen
+								conversion = int.TryParse(userInput, out numberUser); // Conversion de l'input de l'utilisateur en int.
+								if (!conversion)
+								{
+									Console.WriteLine("Entrez un nombre valide !");
+								}
+
+							} while (!conversion && (numberUser >= miniRandom && numberUser <= maxiRandom));
 
 
 
-					// Si le nombre du joueur est supérieur au nombre aléatoire
-					if (numberRandomized < numberUser)
-					{
-						Console.WriteLine("Trop grand !");
-						numberTry = numberTry + 1;//Compte le nombre d'essai
-					}
+							// Si le nombre du joueur est supérieur au nombre aléatoire
+							if (numberRandomized < numberUser)
+							{
+								Console.WriteLine("Trop grand !");
+								numberTry = numberTry + 1;//Compte le nombre d'essai
+							}
 
-					// Si le nombre du joueur est inférieur au nombre aléatoire
-					else if (numberRandomized > numberUser)
-					{
-						Console.WriteLine("Trop petit !");
-						numberTry = numberTry + 1;//Compte le nombre d'essai
-					}
+							// Si le nombre du joueur est inférieur au nombre aléatoire
+							else if (numberRandomized > numberUser)
+							{
+								Console.WriteLine("Trop petit !");
+								numberTry = numberTry + 1;//Compte le nombre d'essai
+							}
 
-					// Si le nombre du joueur est égal au nombre aléatoire
-					else if (numberRandomized == numberUser)
-					{
-						Console.WriteLine("Félicitation, vous avez trouvé le nombre en " + numberTry + " essai!");
+							// Si le nombre du joueur est égal au nombre aléatoire
+							else if (numberRandomized == numberUser)
+							{
+								Console.WriteLine("Félicitation, vous avez trouvé le nombre en " + numberTry + " essai!");
 
-						//Permet de recommencer une partie ou non.
-						while (reponse != "yes" && reponse != "no")
-						{
-							Console.WriteLine("Voulez-vous rejouer, \"yes\" ou \"no\"");
+								//Permet de recommencer une partie ou non.
+								while (reponse != "yes" && reponse != "no")
+								{
+									Console.WriteLine("Voulez-vous rejouer, \"yes\" ou \"no\"");
 
-							reponse = Console.ReadLine();
-						}
+									reponse = Console.ReadLine();
+								}
 
-						if (reponse == "yes")
-						{
-							exit = false;
-							reponse = "";
-						}
+								if (reponse == "yes")
+								{
+									exit = false;
+									reponse = "";
+								}
 
-						else if (reponse == "no")
-						{
-							exit = true;
+								else if (reponse == "no")
+								{
+									exit = true;
 
-						}
+								}
 
-					}
+							}
 
-				}//Fin de la boucle du jeu
+						}//Fin de la boucle du jeu
 
-			} while (!exit);//Condition pour rejouer une partie
+					} while (!exit);//Condition pour rejouer une partie
+					break;
+				case 2:
+					break;
+				case 3:
+					break;
+			}
+
+
+		} //FIN DU MAIN
+
+		static int MenuPrincipal()
+		{
+			int choixMenu = 0;
+			Console.WriteLine("\t\t Plus ou Moins");
+			Console.WriteLine("\t\t 1. Jouer");
+			Console.WriteLine("\t\t 2. Choix de la difficulté");
+			Console.WriteLine("\t\t 3. Quitter");
+			Console.Write("\t\t Votre choix : ");
+			int.TryParse(Console.ReadLine(), out choixMenu);
+			return choixMenu;
 		}
+
 	}
 }
