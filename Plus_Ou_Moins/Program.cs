@@ -99,7 +99,11 @@ namespace Plus_Ou_Moins
 
             Console.WriteLine("Entrez un nombre entre {0} et {1}", miniRandom, maxiRandom);
 
+
+            //******************
             // BOUCLE DU JEU
+            //******************
+
             while (numberUser != numberRandomized)
             {
 
@@ -107,27 +111,22 @@ namespace Plus_Ou_Moins
                 do
                 {
                     string userInput = Console.ReadLine(); // Input de l'utilisateur.
-                    /// La ligne ci-dessous assigne un nombre entier dans une variable booléen
+                                                           /// La ligne ci-dessous assigne un nombre entier dans une variable booléen
+
                     conversion = int.TryParse(userInput, out numberUser); // Conversion de l'input de l'utilisateur en int.
-                    if (!conversion)
-                    {
-                        Console.WriteLine("Entrez un nombre valide !");
-                    }
+
+                    if (!conversion) Console.WriteLine("Entrez un nombre valide !");
 
                 } while (!conversion && (numberUser >= miniRandom && numberUser <= maxiRandom));
 
+
                 // Si le nombre du joueur est supérieur au nombre aléatoire
-                if (numberRandomized < numberUser)
-                {
-                    Console.WriteLine("Trop grand !");
-                }
+                if (numberRandomized < numberUser) Console.WriteLine("Trop grand !");
 
                 // Si le nombre du joueur est inférieur au nombre aléatoire
-                else if (numberRandomized > numberUser)
-                {
-                    Console.WriteLine("Trop petit !");
-                }
-                numberTry++; //Augmente le nombre d'essai
+                else if (numberRandomized > numberUser) Console.WriteLine("Trop petit !");
+
+                numberTry++; //Augmente le nombre d'essais
 
             } //FIN DE LA BOUCLE DU JEU
 
@@ -158,16 +157,15 @@ namespace Plus_Ou_Moins
         {
             int borneInferieure, borneSuperieure, nombreADeviner, nombreIntermediaire; //variables déterminées par le joueur
             int nombreJoueParLOrdinateur, numberTryComputer;
-            Random nbAleatoire = new Random();
+            Random nbAleatoire = new Random(); //nombre aléatoire qui sera choisi par l'ordinateur
             string reponse = "";
 
             do
             {
                 numberTryComputer = 0;
+
                 Console.WriteLine("Définissez les bornes entre lesquelles l'ordinateur devra deviner le nombre");
-
                 Console.Write("Borne 1 : "); int.TryParse(Console.ReadLine(), out borneInferieure);
-
                 Console.Write("Borne 2 : "); int.TryParse(Console.ReadLine(), out borneSuperieure);
 
                 //Si la borne inférieure est supérieure à la borne supérieure, on inverse les valeurs des deux bornes.
@@ -181,42 +179,30 @@ namespace Plus_Ou_Moins
                 Console.WriteLine("Quel nombre voulez-vous que l'ordinateur devine ?");
                 int.TryParse(Console.ReadLine(), out nombreADeviner);
 
-                //BOUCLE QUI CONTIENT LE JEU DE L'ORDINATEUR POUR DETERMINER LE NOMBRE MYSTERE
+                //******************************************************************************
+                // BOUCLE QUI CONTIENT LE JEU DE L'ORDINATEUR POUR DETERMINER LE NOMBRE MYSTERE
+                //******************************************************************************
                 do
                 {
                     numberTryComputer++;
 
                     //Si l'écart entre les bornes est supérieur à 25, l'ordinateur choisit le nombre du milieu
-                    if (borneSuperieure - borneInferieure > 25)
-                    {                     
-                        nombreJoueParLOrdinateur = (borneInferieure + borneSuperieure) / 2;
-                    }
+                    if (borneSuperieure - borneInferieure > 25) nombreJoueParLOrdinateur = (borneInferieure + borneSuperieure) / 2;
 
                     //Dés que l'écart entre les bornes est inférieur à 25, l'ordinateur choisit des nombres
                     //aléatoirement entre ces bornes
-                    else
-                    {
-                        nombreJoueParLOrdinateur = nbAleatoire.Next(borneInferieure, borneSuperieure);
-                    }
+                    else nombreJoueParLOrdinateur = nbAleatoire.Next(borneInferieure, borneSuperieure);
 
                     //Si le nombre que l'ordinateur a joué est supérieur au nombre à deviner, alors
                     //la borne supérieure devient égale au nombre que vient de jouer l'ordinateur, car
                     //il vient d'obtenir l'information que le nombre qu'il cherche ne sera pas supérieur
                     //au nombre qu'il vient d'essayer.
-                    if (nombreJoueParLOrdinateur > nombreADeviner)
-                    {
-                        borneSuperieure = nombreJoueParLOrdinateur - 1;
-                    }
+                    if (nombreJoueParLOrdinateur > nombreADeviner) borneSuperieure = nombreJoueParLOrdinateur - 1;
 
-                    else if (nombreJoueParLOrdinateur < nombreADeviner)
-                    {
-                        borneInferieure = nombreJoueParLOrdinateur + 1;
-                    }
+                    else if (nombreJoueParLOrdinateur < nombreADeviner) borneInferieure = nombreJoueParLOrdinateur + 1;
 
-                    else
-                    {
-                        Console.WriteLine("L'ordinateur a trouvé le nombre en " + numberTryComputer + " essai" + ((numberTryComputer > 1) ? "s" : "") + "!");
-                    }
+                    else Console.WriteLine("L'ordinateur a trouvé le nombre en " + numberTryComputer + " essai" + ((numberTryComputer > 1) ? "s" : "") + "!");
+
 
                 } while (nombreJoueParLOrdinateur != nombreADeviner); //Tant que l'ordinateur n'a pas trouvé le nombre mystère, on reste dans la boucle.
 
@@ -229,11 +215,6 @@ namespace Plus_Ou_Moins
 
             } while (reponse == "yes");
            
-        }
-
-        static void redefinitionDesBornes(int borneInf, int borneSup, int nbJoue, int nbMystere, int nbEssaisOrdi)
-        {
-
         }
 
     }
