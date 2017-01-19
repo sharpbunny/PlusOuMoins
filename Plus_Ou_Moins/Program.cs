@@ -16,7 +16,7 @@ namespace Plus_Ou_Moins
             //*******************************
             //   DECLARATION DES VARIABLES
             //*******************************
-            int choixMenuPrincipal, nombreDePartiesJouees = 0;
+            int choixMenuPrincipal, nombreDePartiesJouees = 0, nombreDePartiesOuLOrdinateurADuDevinerLeNombreDuJoueur = 0;
             
 
             //**********************
@@ -38,11 +38,12 @@ namespace Plus_Ou_Moins
                         break;
 
                     case 3: //affiche les statistiques du joueur
-                        statistiquesDuJoueur(nombreDePartiesJouees);
+                        statistiquesDuJoueur(nombreDePartiesJouees, nombreDePartiesOuLOrdinateurADuDevinerLeNombreDuJoueur);
                         break;
 
                     case 4: //C'est l'ordinateur qui doit deviner le nombre mystère choisi par le joueur
                         ordinateurDevineLeNombre();
+                        nombreDePartiesOuLOrdinateurADuDevinerLeNombreDuJoueur++;
                         break;
 
                     case 5: //Permet de quitter le programme
@@ -130,11 +131,12 @@ namespace Plus_Ou_Moins
             Console.Clear();
         }
 
-        static void statistiquesDuJoueur(int nbPartiesJouees)
+        static void statistiquesDuJoueur(int nbPartiesJouees, int nbPartiesJoueesOrdinateur)
         {
             string quitterLeMenuDesStatistiques = "";
             Console.WriteLine("\t\t--- Statistiques du joueur ---");
-            Console.WriteLine("\t\tParties jouees : " + nbPartiesJouees);
+            Console.WriteLine("\t\tParties jouées : " + nbPartiesJouees);
+            Console.WriteLine("\t\tParties jouées par l'ordinateur : " + nbPartiesJoueesOrdinateur);
 
             //Boucle qui permet de forcer l'utilisateur à taper 1 pour retourner au menu principal
             do
