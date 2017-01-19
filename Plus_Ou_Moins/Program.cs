@@ -34,7 +34,7 @@ namespace Plus_Ou_Moins
 					do//Condition pour rejouer une partie
 					{
 						numberRandomized = numberRandomizer.Next(miniRandom, maxiRandom); // Génération du nombre à trouver
-                        int numberTry = 1;
+                        int numberTry = 0;
 
                         Console.WriteLine("Entrez un nombre entre {0} et {1}", miniRandom, maxiRandom);
 
@@ -55,21 +55,18 @@ namespace Plus_Ou_Moins
 
 							} while (!conversion && (numberUser >= miniRandom && numberUser <= maxiRandom));
 
-
-
 							// Si le nombre du joueur est supérieur au nombre aléatoire
 							if (numberRandomized < numberUser)
 							{
 								Console.WriteLine("Trop grand !");
-								numberTry = numberTry + 1;//Compte le nombre d'essai
 							}
 
 							// Si le nombre du joueur est inférieur au nombre aléatoire
 							else if (numberRandomized > numberUser)
 							{
 								Console.WriteLine("Trop petit !");
-								numberTry = numberTry + 1;//Compte le nombre d'essai
 							}
+                            numberTry++; //Augmente le nombre d'essai
                         }
 
                         Console.WriteLine("Félicitation, vous avez trouvé le nombre en " + numberTry + " essai!");
