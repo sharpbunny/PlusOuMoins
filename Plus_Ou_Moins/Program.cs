@@ -41,7 +41,11 @@ namespace Plus_Ou_Moins
                         statistiquesDuJoueur(nombreDePartiesJouees);
                         break;
 
-                    case 4: //Permet de quitter le programme
+                    case 4: //C'est l'ordinateur qui doit deviner le nombre mystère choisi par le joueur
+                        ordinateurDevineLeNombre();
+                        break;
+
+                    case 5: //Permet de quitter le programme
                         Environment.Exit(0);
                         break;
                 }
@@ -61,18 +65,19 @@ namespace Plus_Ou_Moins
                 Console.WriteLine("\t\t 1. Jouer");
                 Console.WriteLine("\t\t 2. Choix de la difficulté");
                 Console.WriteLine("\t\t 3. Statistiques");
-                Console.WriteLine("\t\t 4. Quitter");
+                Console.WriteLine("\t\t 4. Faire deviner un nombre à l'ordinateur");
+                Console.WriteLine("\t\t 5. Quitter");
                 Console.Write("\t\t Votre choix : ");
                 int.TryParse(Console.ReadLine(), out choixMenu);
 
-                if (choixMenu < 0 || choixMenu > 4) //Si l'utilisateur n'a pas rentré un choix de menu correct
+                if (choixMenu < 0 || choixMenu > 5) //Si l'utilisateur n'a pas rentré un choix de menu correct
                 {
                     Console.WriteLine("Vous devez entrer un nombre compris entre 1 et 3. \nAppuyez sur une touche pour continuer !");
                     Console.ReadLine();
                     Console.Clear();
                 }
 
-            } while (choixMenu < 0 || choixMenu > 4); //L'utilisateur doit taper un nombre tant qu'il n'a pas rentré un choix de menu correct
+            } while (choixMenu < 0 || choixMenu > 5); //L'utilisateur doit taper un nombre tant qu'il n'a pas rentré un choix de menu correct
 
             Console.Clear();
 
@@ -150,42 +155,62 @@ namespace Plus_Ou_Moins
         static void ordinateurDevineLeNombre()
         {
             int borneInferieure, borneSuperieure, nombreADeviner, nombreIntermediaire; //variables déterminées par le joueur
-            int nombreDuMilieu, nombreJoueParLOrdinateur;
+            int nombreJoueParLOrdinateur, numberTryComputer;
+            string reponse = "";
 
-            Console.WriteLine("Définissez les bornes entre lesquelles l'ordinateur devra deviner le nombre");
-
-            Console.Write("Borne 1 : "); int.TryParse(Console.ReadLine(), out borneInferieure);
-
-            Console.Write("Borne 2 : "); int.TryParse(Console.ReadLine(), out borneSuperieure);
-
-            //Si la borne inférieure est supérieure à la borne supérieure, on inverse les valeurs des deux bornes.
-            if(borneInferieure > borneSuperieure)
+            do
             {
-                nombreIntermediaire = borneInferieure;
-                borneInferieure = borneSuperieure;
-                borneSuperieure = nombreIntermediaire;             
-            }
+                numberTryComputer = 0;
+                Console.WriteLine("Définissez les bornes entre lesquelles l'ordinateur devra deviner le nombre");
 
-            Console.WriteLine("Quel nombre voulez-vous que l'ordinateur devine ?");
-            int.TryParse(Console.ReadLine(), out nombreADeviner);
+                Console.Write("Borne 1 : "); int.TryParse(Console.ReadLine(), out borneInferieure);
 
-            nombreJoueParLOrdinateur = (borneInferieure + borneSuperieure) / 2;
+                Console.Write("Borne 2 : "); int.TryParse(Console.ReadLine(), out borneSuperieure);
 
-            if(nombreJoueParLOrdinateur > nombreADeviner)
-            {
-                borneSuperieure = nombreJoueParLOrdinateur
-            }
+                //Si la borne inférieure est supérieure à la borne supérieure, on inverse les valeurs des deux bornes.
+                if (borneInferieure > borneSuperieure)
+                {
+                    nombreIntermediaire = borneInferieure;
+                    borneInferieure = borneSuperieure;
+                    borneSuperieure = nombreIntermediaire;
+                }
 
-            else if (nombreJoueParLOrdinateur < nombreADeviner)
-            {
-                borneInferieure = nombreJoueParLOrdinateur;
-            }
+                Console.WriteLine("Quel nombre voulez-vous que l'ordinateur devine ?");
+                int.TryParse(Console.ReadLine(), out nombreADeviner);
 
-            else
-            {
-                Console.WriteLine("L'ordinateur a trouvé le nombre en ");
-            }
+                //BOUCLE QUI CONTIENT LE JEU DE L'ORDINATEUR POUR DETERMINER LE NOMBRE MYSTERE
+                do
+                {
+                    numberTryComputer++;
+                    //A chaque tour l'ordinateur prend le nombre médian entre la borne inférieure et la borne supérieure
+                    nombreJoueParLOrdinateur = (borneInferieure + borneSuperieure) / 2;
 
+                    if (nombreJoueParLOrdinateur > nombreADeviner)
+                    {
+                        borneSuperieure = nombreJoueParLOrdinateur;
+                    }
+
+                    else if (nombreJoueParLOrdinateur < nombreADeviner)
+                    {
+                        borneInferieure = nombreJoueParLOrdinateur;
+                    }
+
+                    else
+                    {
+                        Console.WriteLine("L'ordinateur a trouvé le nombre en " + numberTryComputer + " essai" + ((numberTryComputer > 1) ? "s" : "") + "!");
+                    }
+
+                } while (nombreJoueParLOrdinateur != nombreADeviner); //Tant que l'ordinateur n'a pas trouvé le nombre mystère, on reste dans la boucle.
+
+                //Tant que le joueur ne répond pas "yes" ou "no" quand on lui demande de rejouer, on lui repose la question.
+                do
+                {
+                    Console.WriteLine("Voulez-vous faire rejouer l'ordinateur ? yes/no");
+                    reponse = Console.ReadLine();
+                } while (reponse != "yes" && reponse != "no");
+
+            } while (reponse == "yes");
+           
         }
 
     }
