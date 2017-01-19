@@ -102,9 +102,13 @@ namespace Plus_Ou_Moins
 
 					} while (!exit);//Condition pour rejouer une partie
 					break;
-				case 2:
+
+				case 2: //Permet de choisir le niveau de difficulté
+
 					break;
-				case 3:
+
+				case 3: //Permet de quitter le programme
+					
 					break;
 			}
 
@@ -113,13 +117,28 @@ namespace Plus_Ou_Moins
 
 		static int MenuPrincipal()
 		{
-			int choixMenu = 0;
-			Console.WriteLine("\t\t Plus ou Moins");
-			Console.WriteLine("\t\t 1. Jouer");
-			Console.WriteLine("\t\t 2. Choix de la difficulté");
-			Console.WriteLine("\t\t 3. Quitter");
-			Console.Write("\t\t Votre choix : ");
-			int.TryParse(Console.ReadLine(), out choixMenu);
+			int choixMenu = 0; //Stockera le choix du menu que le joueur va choisir
+
+			do
+			{
+				Console.WriteLine("\t\t Plus ou Moins");
+				Console.WriteLine("\t\t 1. Jouer");
+				Console.WriteLine("\t\t 2. Choix de la difficulté");
+				Console.WriteLine("\t\t 3. Quitter");
+				Console.Write("\t\t Votre choix : ");
+				int.TryParse(Console.ReadLine(), out choixMenu);
+
+				if (choixMenu < 0 || choixMenu > 3) //Si l'utilisateur n'a pas rentré un choix de menu correct
+				{
+					Console.WriteLine("Vous devez entrer un nombre compris entre 1 et 3. \nAppuyez sur une touche pour continuer !");
+					Console.ReadLine();
+					Console.Clear();
+				}
+
+			} while (choixMenu < 0 || choixMenu > 3); //L'utilisateur doit taper un nombre tant qu'il n'a pas rentré un choix de menu correct
+
+			Console.Clear();
+
 			return choixMenu;
 		}
 
