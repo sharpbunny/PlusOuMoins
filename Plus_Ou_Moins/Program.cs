@@ -180,6 +180,10 @@ namespace Plus_Ou_Moins
                     //A chaque tour l'ordinateur prend le nombre médian entre la borne inférieure et la borne supérieure
                     nombreJoueParLOrdinateur = (borneInferieure + borneSuperieure) / 2;
 
+                    //Si le nombre que l'ordinateur a joué est supérieur au nombre à deviner, alors
+                    //la borne supérieure devient égale au nombre que vient de jouer l'ordinateur, car
+                    //il vient d'obtenir l'information que le nombre qu'il cherche ne sera pas supérieur
+                    //au nombre qu'il vient d'essayer.
                     if (nombreJoueParLOrdinateur > nombreADeviner)
                     {
                         borneSuperieure = nombreJoueParLOrdinateur;
