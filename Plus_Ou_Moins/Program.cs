@@ -84,23 +84,11 @@ namespace Plus_Ou_Moins
 									reponse = Console.ReadLine();
 								}
 
-								if (reponse == "yes")
-								{
-									exit = false;
-									reponse = "";
-								}
-
-								else if (reponse == "no")
-								{
-									exit = true;
-
-								}
-
 							}
 
 						}//Fin de la boucle du jeu
 
-					} while (!exit);//Condition pour rejouer une partie
+					} while (reponse=="yes");//Condition pour rejouer une partie
 					break;
 
 				case 2: //Permet de choisir le niveau de difficulté
