@@ -17,7 +17,12 @@ namespace Plus_Ou_Moins
             //   DECLARATION DES VARIABLES
             //*******************************
             int choixMenuPrincipal, nombreDePartiesJouees = 0, nombreDePartiesOuLOrdinateurADuDevinerLeNombreDuJoueur = 0;
-            
+
+            // debug display args passed in command line
+            foreach (string arg in args)
+            {
+                //Console.WriteLine(arg);
+            }
 
             //**********************
             //     LA PARTIE
