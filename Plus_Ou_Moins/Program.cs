@@ -35,7 +35,7 @@ namespace Plus_Ou_Moins
 
                     case 1: //LE JOUEUR CHOISIT DE JOUER
                         theGame();
-                        nombreDePartiesJouees++; 
+                        nombreDePartiesJouees++;
                         break;
 
                     case 2: //Permet de choisir le niveau de difficulté pour le mode 1 joueur
@@ -63,22 +63,70 @@ namespace Plus_Ou_Moins
 
         static int MenuPrincipal()
         {
+            int i = 0, j = 0, longueurMaxMenus;
             int choixMenu = 0; //Stockera le choix du menu que le joueur va choisir
-
+            string[] menus = {"1. Jouer", "2. Choix de la difficulté", "3. Statistiques",
+                              "4. Faire deviner un nombre à l'ordinateur", "5. Quitter" };
             do
             {
-                Console.WriteLine("\t\t Plus ou Moins");
-                Console.WriteLine("\t\t 1. Jouer");
-                Console.WriteLine("\t\t 2. Choix de la difficulté");
-                Console.WriteLine("\t\t 3. Statistiques");
-                Console.WriteLine("\t\t 4. Faire deviner un nombre à l'ordinateur");
-                Console.WriteLine("\t\t 5. Quitter");
-                Console.Write("\t\t Votre choix : ");
+                //On cherche à stocker la longueur de la plus grande chaîne du tableau
+                longueurMaxMenus = menus[0].Length;
+                for (i = 1; i < menus.Length; i++)
+                {
+                    if (menus[i].Length > longueurMaxMenus) longueurMaxMenus = menus[i].Length;
+                }
+
+                //On affiche les tirets en haut du tableau du menu
+                Console.Write("\t");
+                for (i = 0; i < longueurMaxMenus + 10; i++)
+                {
+                    Console.Write("-");
+                }
+
+                //On affiche la ligne du titre
+                Console.Write("\n\t|\t   Plus ou Moins");
+                for (j = 0; j < longueurMaxMenus - 2 - "Plus ou Moins".Length; j++)
+                {
+                    Console.Write(" ");
+                }
+                Console.WriteLine("|");
+
+                //On affiche les tirets en-dessous du titre
+                Console.Write("\t");
+                for (i = 0; i < longueurMaxMenus + 10; i++)
+                {
+                    Console.Write("-");
+                }
+                Console.WriteLine();
+
+                //On affiche les menus ainsi que les bords du tableau correspondant à leur ligne
+                for (i = 0; i < menus.Length; i++)
+                {
+                    Console.Write("\t|\t" + menus[i]);
+                    for (j = 0; j < longueurMaxMenus + 1 - menus[i].Length; j++)
+                    {
+                        Console.Write(" ");
+                    }
+                    Console.WriteLine("|");
+                }
+                //Fin de l'affichage des menus
+
+                //On affiche les tirets en bas du tableau des menus
+                Console.Write("\t");
+                for (i = 0; i < longueurMaxMenus + 10; i++)
+                {
+                    Console.Write("-");
+                }
+                Console.WriteLine();
+                //FIN DE L'AFFICHAGE DU MENU ET DU TITRE DU JEU
+
+                //Le joueur sélectionne l'option du menu qu'il désire
+                Console.Write("\t|\tVotre choix : ");
                 int.TryParse(Console.ReadLine(), out choixMenu);
 
                 if (choixMenu < 0 || choixMenu > 5) //Si l'utilisateur n'a pas rentré un choix de menu correct
                 {
-                    Console.WriteLine("Vous devez entrer un nombre compris entre 1 et 3. \nAppuyez sur une touche pour continuer !");
+                    Console.WriteLine("Vous devez entrer un nombre compris entre 1 et 5. \nAppuyez sur une touche pour continuer !");
                     Console.ReadLine();
                     Console.Clear();
                 }
@@ -130,7 +178,7 @@ namespace Plus_Ou_Moins
 
             } //FIN DE LA BOUCLE DU JEU
 
-            Console.WriteLine("Félicitations!!! Vous avez trouvé le nombre en " + numberTry + " essai" + ((numberTry>1)?"s":"") + "!");
+            Console.WriteLine("Félicitations!!! Vous avez trouvé le nombre en " + numberTry + " essai" + ((numberTry > 1) ? "s" : "") + "!");
             Console.ReadLine();
             Console.Clear();
         }
@@ -147,7 +195,7 @@ namespace Plus_Ou_Moins
             {
                 Console.Write("Tapez 1 pour retourner au menu principal : ");
                 quitterLeMenuDesStatistiques = Console.ReadLine();
-                Console.WriteLine("\nTapez 1 pour quitter !!!\n");                   
+                Console.WriteLine("\nTapez 1 pour quitter !!!\n");
             } while (quitterLeMenuDesStatistiques != "1");
 
             Console.Clear(); //Quand le joueur quitte ce menu, on efface ce qui est affiché à l'écran
@@ -214,7 +262,7 @@ namespace Plus_Ou_Moins
                 } while (reponse != "yes" && reponse != "no");
 
             } while (reponse == "yes");
-           
+
         }
 
     }
