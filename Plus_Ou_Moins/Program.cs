@@ -16,7 +16,8 @@ namespace Plus_Ou_Moins
             //*******************************
             //   DECLARATION DES VARIABLES
             //*******************************
-            int choixMenuPrincipal;
+            int choixMenuPrincipal, nombreDePartiesJouees = 0;
+            
 
             //**********************
             //     LA PARTIE
@@ -29,13 +30,18 @@ namespace Plus_Ou_Moins
 
                     case 1: //LE JOUEUR CHOISIT DE JOUER
                         theGame();
+                        nombreDePartiesJouees++; 
                         break;
 
                     case 2: //Permet de choisir le niveau de difficulté
 
                         break;
 
-                    case 3: //Permet de quitter le programme
+                    case 3: //affiche les statistiques du joueur
+                        statistiquesDuJoueur(nombreDePartiesJouees);
+                        break;
+
+                    case 4: //Permet de quitter le programme
                         Environment.Exit(0);
                         break;
                 }
@@ -54,18 +60,19 @@ namespace Plus_Ou_Moins
                 Console.WriteLine("\t\t Plus ou Moins");
                 Console.WriteLine("\t\t 1. Jouer");
                 Console.WriteLine("\t\t 2. Choix de la difficulté");
-                Console.WriteLine("\t\t 3. Quitter");
+                Console.WriteLine("\t\t 3. Statistiques");
+                Console.WriteLine("\t\t 4. Quitter");
                 Console.Write("\t\t Votre choix : ");
                 int.TryParse(Console.ReadLine(), out choixMenu);
 
-                if (choixMenu < 0 || choixMenu > 3) //Si l'utilisateur n'a pas rentré un choix de menu correct
+                if (choixMenu < 0 || choixMenu > 4) //Si l'utilisateur n'a pas rentré un choix de menu correct
                 {
                     Console.WriteLine("Vous devez entrer un nombre compris entre 1 et 3. \nAppuyez sur une touche pour continuer !");
                     Console.ReadLine();
                     Console.Clear();
                 }
 
-            } while (choixMenu < 0 || choixMenu > 3); //L'utilisateur doit taper un nombre tant qu'il n'a pas rentré un choix de menu correct
+            } while (choixMenu < 0 || choixMenu > 4); //L'utilisateur doit taper un nombre tant qu'il n'a pas rentré un choix de menu correct
 
             Console.Clear();
 
@@ -110,11 +117,45 @@ namespace Plus_Ou_Moins
                     Console.WriteLine("Trop petit !");
                 }
                 numberTry++; //Augmente le nombre d'essai
+
+            } //FIN DE LA BOUCLE DU JEU
+
+            //Affiche le mot essai sans s si le joueur a trouvé le nombre mystère en un seul coup
+            if(numberTry == 1)
+            {
+                Console.WriteLine("Félicitations!!! Vous avez trouvé le nombre en " + numberTry + " essai!");
             }
 
-            Console.WriteLine("Félicitation, vous avez trouvé le nombre en " + numberTry + " essai!");
+            //Si il l'a trouvé en plusieurs coups, le mot "essai" s'affiche avec un s
+            else
+            {
+                Console.WriteLine("Félicitations!!! Vous avez trouvé le nombre en " + numberTry + " essais!");
+            }
+
             Console.ReadLine();
             Console.Clear();
+        }
+
+        static void statistiquesDuJoueur(int nbPartiesJouees)
+        {
+            byte quitterLeMenuDesStatistiques = 0;
+            Console.WriteLine("\t\t--- Statistiques du joueur ---");
+            Console.WriteLine("\t\tParties jouees : " + nbPartiesJouees);
+
+            //Boucle qui permet de forcer l'utilisateur à taper 1 pour retourner au menu principal
+            do
+            {
+                Console.Write("Tapez 1 pour retourner au menu principal : ");
+                byte.TryParse(Console.ReadLine(), out quitterLeMenuDesStatistiques);
+
+                if(quitterLeMenuDesStatistiques != 1)
+                {
+                    Console.WriteLine("\nTapez 1 pour quitter !!!\n");                   
+                }
+
+            } while (quitterLeMenuDesStatistiques != 1);
+
+            Console.Clear(); //Quand le joueur quitte ce menu, on efface ce qui est affiché à l'écran
         }
 
     }
