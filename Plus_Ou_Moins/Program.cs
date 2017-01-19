@@ -33,7 +33,7 @@ namespace Plus_Ou_Moins
                         nombreDePartiesJouees++; 
                         break;
 
-                    case 2: //Permet de choisir le niveau de difficulté
+                    case 2: //Permet de choisir le niveau de difficulté pour le mode 1 joueur
 
                         break;
 
@@ -156,6 +156,47 @@ namespace Plus_Ou_Moins
             } while (quitterLeMenuDesStatistiques != 1);
 
             Console.Clear(); //Quand le joueur quitte ce menu, on efface ce qui est affiché à l'écran
+        }
+
+        static void ordinateurDevineLeNombre()
+        {
+            int borneInferieure, borneSuperieure, nombreADeviner, nombreIntermediaire; //variables déterminées par le joueur
+            int nombreDuMilieu, nombreJoueParLOrdinateur;
+
+            Console.WriteLine("Définissez les bornes entre lesquelles l'ordinateur devra deviner le nombre");
+
+            Console.Write("Borne 1 : "); int.TryParse(Console.ReadLine(), out borneInferieure);
+
+            Console.Write("Borne 2 : "); int.TryParse(Console.ReadLine(), out borneSuperieure);
+
+            //Si la borne inférieure est supérieure à la borne supérieure, on inverse les valeurs des deux bornes.
+            if(borneInferieure > borneSuperieure)
+            {
+                nombreIntermediaire = borneInferieure;
+                borneInferieure = borneSuperieure;
+                borneSuperieure = nombreIntermediaire;             
+            }
+
+            Console.WriteLine("Quel nombre voulez-vous que l'ordinateur devine ?");
+            int.TryParse(Console.ReadLine(), out nombreADeviner);
+
+            nombreJoueParLOrdinateur = (borneInferieure + borneSuperieure) / 2;
+
+            if(nombreJoueParLOrdinateur > nombreADeviner)
+            {
+                borneSuperieure = nombreJoueParLOrdinateur
+            }
+
+            else if (nombreJoueParLOrdinateur < nombreADeviner)
+            {
+                borneInferieure = nombreJoueParLOrdinateur;
+            }
+
+            else
+            {
+                Console.WriteLine("L'ordinateur a trouvé le nombre en ");
+            }
+
         }
 
     }
