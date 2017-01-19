@@ -20,7 +20,6 @@ namespace Plus_Ou_Moins
 			int numberRandomized, miniRandom = 0, maxiRandom = 100, numberUser = miniRandom - 1, choixMenuPrincipal;
 			bool conversion = false;
 			string reponse = ""; // Variable qui permettra de savoir si le joueur compte rejouer ou non
-			int numberTry = 1;
 
 			//**********************
 			//     LA PARTIE
@@ -35,8 +34,9 @@ namespace Plus_Ou_Moins
 					do//Condition pour rejouer une partie
 					{
 						numberRandomized = numberRandomizer.Next(miniRandom, maxiRandom); // Génération du nombre à trouver
+                        int numberTry = 1;
 
-						Console.WriteLine("Entrez un nombre entre {0} et {1}", miniRandom, maxiRandom);
+                        Console.WriteLine("Entrez un nombre entre {0} et {1}", miniRandom, maxiRandom);
 
 						// BOUCLE DU JEU
 						while (numberUser != numberRandomized)
