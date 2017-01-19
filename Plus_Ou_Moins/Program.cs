@@ -127,7 +127,7 @@ namespace Plus_Ou_Moins
 
         static void statistiquesDuJoueur(int nbPartiesJouees)
         {
-            byte quitterLeMenuDesStatistiques = 0;
+            string quitterLeMenuDesStatistiques = "";
             Console.WriteLine("\t\t--- Statistiques du joueur ---");
             Console.WriteLine("\t\tParties jouees : " + nbPartiesJouees);
 
@@ -135,14 +135,9 @@ namespace Plus_Ou_Moins
             do
             {
                 Console.Write("Tapez 1 pour retourner au menu principal : ");
-                byte.TryParse(Console.ReadLine(), out quitterLeMenuDesStatistiques);
-
-                if(quitterLeMenuDesStatistiques != 1)
-                {
-                    Console.WriteLine("\nTapez 1 pour quitter !!!\n");                   
-                }
-
-            } while (quitterLeMenuDesStatistiques != 1);
+                quitterLeMenuDesStatistiques = Console.ReadLine();
+                Console.WriteLine("\nTapez 1 pour quitter !!!\n");                   
+            } while (quitterLeMenuDesStatistiques != "1");
 
             Console.Clear(); //Quand le joueur quitte ce menu, on efface ce qui est affiché à l'écran
         }
