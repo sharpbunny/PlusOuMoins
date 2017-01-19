@@ -157,7 +157,7 @@ namespace Plus_Ou_Moins
         static void ordinateurDevineLeNombre()
         {
             int borneInferieure, borneSuperieure, nombreADeviner, nombreIntermediaire; //variables déterminées par le joueur
-            int nombreJoueParLOrdinateur, numberTryComputer;
+            int nombreJoueParLOrdinateur, numberTryComputer, borneIntermediaire;
             Random nbAleatoire = new Random();
             string reponse = "";
 
@@ -187,11 +187,29 @@ namespace Plus_Ou_Moins
                     numberTryComputer++;
 
                     //Si l'écart entre les bornes est supérieur à 25, l'ordinateur choisit le nombre du milieu
-                    if (borneSuperieure - borneInferieure <= 25)
+                    if (borneSuperieure - borneInferieure > 25)
                     {
-                        //A chaque tour l'ordinateur prend le nombre médian entre la borne inférieure et la borne supérieure
+                        
                         nombreJoueParLOrdinateur = (borneInferieure + borneSuperieure) / 2;
-                        redefinitionDesBornes(borneInferieure, borneSuperieure, nombreJoueParLOrdinateur, nombreADeviner, numberTryComputer);
+
+                        //Si le nombre que l'ordinateur a joué est supérieur au nombre à deviner, alors
+                        //la borne supérieure devient égale au nombre que vient de jouer l'ordinateur, car
+                        //il vient d'obtenir l'information que le nombre qu'il cherche ne sera pas supérieur
+                        //au nombre qu'il vient d'essayer.
+                        if (nombreJoueParLOrdinateur > nombreADeviner)
+                        {
+                            borneSuperieure = nombreJoueParLOrdinateur - 1;
+                        }
+
+                        else if (nombreJoueParLOrdinateur < nombreADeviner)
+                        {
+                            borneInferieure = nombreJoueParLOrdinateur + 1;
+                        }
+
+                        else
+                        {
+                            Console.WriteLine("L'ordinateur a trouvé le nombre en " + numberTryComputer + " essai" + ((numberTryComputer > 1) ? "s" : "") + "!");
+                        }
 
                     }
 
@@ -200,9 +218,22 @@ namespace Plus_Ou_Moins
                     else
                     {
                         nombreJoueParLOrdinateur = nbAleatoire.Next(borneInferieure, borneSuperieure);
-                        redefinitionDesBornes(borneInferieure, borneSuperieure, nombreJoueParLOrdinateur, nombreADeviner, numberTryComputer);
-                    }
 
+                        if (nombreJoueParLOrdinateur > nombreADeviner)
+                        {
+                            borneSuperieure = nombreJoueParLOrdinateur - 1;
+                        }
+
+                        else if (nombreJoueParLOrdinateur < nombreADeviner)
+                        {
+                            borneInferieure = nombreJoueParLOrdinateur + 1;
+                        }
+
+                        else
+                        {
+                            Console.WriteLine("L'ordinateur a trouvé le nombre en " + numberTryComputer + " essai" + ((numberTryComputer > 1) ? "s" : "") + "!");
+                        }
+                    }
 
                 } while (nombreJoueParLOrdinateur != nombreADeviner); //Tant que l'ordinateur n'a pas trouvé le nombre mystère, on reste dans la boucle.
 
@@ -219,24 +250,7 @@ namespace Plus_Ou_Moins
 
         static void redefinitionDesBornes(int borneInf, int borneSup, int nbJoue, int nbMystere, int nbEssaisOrdi)
         {
-            //Si le nombre que l'ordinateur a joué est supérieur au nombre à deviner, alors
-            //la borne supérieure devient égale au nombre que vient de jouer l'ordinateur, car
-            //il vient d'obtenir l'information que le nombre qu'il cherche ne sera pas supérieur
-            //au nombre qu'il vient d'essayer.
-            if (nbJoue > nbMystere)
-            {
-                borneSup = nbJoue;
-            }
 
-            else if (nbJoue < nbMystere)
-            {
-                borneInf = nbJoue;
-            }
-
-            else
-            {
-                Console.WriteLine("L'ordinateur a trouvé le nombre en " + nbEssaisOrdi + " essai" + ((nbEssaisOrdi > 1) ? "s" : "") + "!");
-            }
         }
 
     }
