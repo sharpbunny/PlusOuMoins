@@ -47,7 +47,7 @@ namespace Plus_Ou_Moins
 				// Si le nombre du joueur est égal au nombre aléatoire
 				else if (numberRandomized == numberUser)
 				{
-					Console.WriteLine("Félicitation, vous avez trouvé le nombre test!");
+					Console.WriteLine("Félicitation, vous avez trouvé le nombre !");
 				}
 			}
 		}
