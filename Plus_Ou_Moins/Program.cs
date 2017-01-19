@@ -70,23 +70,18 @@ namespace Plus_Ou_Moins
 								Console.WriteLine("Trop petit !");
 								numberTry = numberTry + 1;//Compte le nombre d'essai
 							}
+                        }
 
-							// Si le nombre du joueur est égal au nombre aléatoire
-							else if (numberRandomized == numberUser)
-							{
-								Console.WriteLine("Félicitation, vous avez trouvé le nombre en " + numberTry + " essai!");
+                        Console.WriteLine("Félicitation, vous avez trouvé le nombre en " + numberTry + " essai!");
 
-								//Permet de recommencer une partie ou non.
-								while (reponse != "yes" && reponse != "no")
-								{
-									Console.WriteLine("Voulez-vous rejouer, \"yes\" ou \"no\"");
+						//Permet de recommencer une partie ou non.
+						while (reponse != "yes" && reponse != "no")
+						{
+							Console.WriteLine("Voulez-vous rejouer, \"yes\" ou \"no\"");
 
-									reponse = Console.ReadLine();
-								}
+							reponse = Console.ReadLine();
+						}
 
-							}
-
-						}//Fin de la boucle du jeu
 
 					} while (reponse=="yes");//Condition pour rejouer une partie
 					break;
