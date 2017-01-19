@@ -120,18 +120,7 @@ namespace Plus_Ou_Moins
 
             } //FIN DE LA BOUCLE DU JEU
 
-            //Affiche le mot essai sans s si le joueur a trouvé le nombre mystère en un seul coup
-            if(numberTry == 1)
-            {
-                Console.WriteLine("Félicitations!!! Vous avez trouvé le nombre en " + numberTry + " essai!");
-            }
-
-            //Si il l'a trouvé en plusieurs coups, le mot "essai" s'affiche avec un s
-            else
-            {
-                Console.WriteLine("Félicitations!!! Vous avez trouvé le nombre en " + numberTry + " essais!");
-            }
-
+            Console.WriteLine("Félicitations!!! Vous avez trouvé le nombre en " + numberTry + " essai" + ((numberTry>1)?"s":"") + "!");
             Console.ReadLine();
             Console.Clear();
         }
