@@ -32,12 +32,13 @@
 			this.buttonPlay = new System.Windows.Forms.Button();
 			this.buttonOptions = new System.Windows.Forms.Button();
 			this.titreDuJeu = new System.Windows.Forms.PictureBox();
+			this.buttonComputer = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.titreDuJeu)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// buttonExit
 			// 
-			this.buttonExit.Location = new System.Drawing.Point(93, 311);
+			this.buttonExit.Location = new System.Drawing.Point(93, 293);
 			this.buttonExit.Name = "buttonExit";
 			this.buttonExit.Size = new System.Drawing.Size(128, 51);
 			this.buttonExit.TabIndex = 0;
@@ -47,7 +48,7 @@
 			// 
 			// buttonPlay
 			// 
-			this.buttonPlay.Location = new System.Drawing.Point(93, 144);
+			this.buttonPlay.Location = new System.Drawing.Point(93, 122);
 			this.buttonPlay.Name = "buttonPlay";
 			this.buttonPlay.Size = new System.Drawing.Size(128, 51);
 			this.buttonPlay.TabIndex = 2;
@@ -56,7 +57,7 @@
 			// 
 			// buttonOptions
 			// 
-			this.buttonOptions.Location = new System.Drawing.Point(93, 227);
+			this.buttonOptions.Location = new System.Drawing.Point(93, 236);
 			this.buttonOptions.Name = "buttonOptions";
 			this.buttonOptions.Size = new System.Drawing.Size(128, 51);
 			this.buttonOptions.TabIndex = 3;
@@ -74,11 +75,21 @@
 			this.titreDuJeu.TabIndex = 1;
 			this.titreDuJeu.TabStop = false;
 			// 
+			// buttonComputer
+			// 
+			this.buttonComputer.Location = new System.Drawing.Point(93, 179);
+			this.buttonComputer.Name = "buttonComputer";
+			this.buttonComputer.Size = new System.Drawing.Size(128, 51);
+			this.buttonComputer.TabIndex = 4;
+			this.buttonComputer.Text = "L\'ordinateur joue";
+			this.buttonComputer.UseVisualStyleBackColor = true;
+			// 
 			// wfPlusOuMoins
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.ClientSize = new System.Drawing.Size(310, 374);
+			this.Controls.Add(this.buttonComputer);
 			this.Controls.Add(this.buttonOptions);
 			this.Controls.Add(this.buttonPlay);
 			this.Controls.Add(this.titreDuJeu);
@@ -97,5 +108,6 @@
 		private System.Windows.Forms.PictureBox titreDuJeu;
 		private System.Windows.Forms.Button buttonPlay;
 		private System.Windows.Forms.Button buttonOptions;
+		private System.Windows.Forms.Button buttonComputer;
 	}
 }
