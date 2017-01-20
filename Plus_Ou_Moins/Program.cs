@@ -66,9 +66,10 @@ namespace Plus_Ou_Moins
 
 			else if (args[0] == "wf" || args[0] == "windowsform" || (args[0] == "windows" && args[1] == "form"))
 			{
-				wfPlusOuMoins PlusOuMoins = new wfPlusOuMoins();
+
 				Application.EnableVisualStyles();
 				Application.SetCompatibleTextRenderingDefault(false);
+				wfPlusOuMoins PlusOuMoins = new wfPlusOuMoins();
 				Application.Run(PlusOuMoins);
 				Environment.Exit(0);
 			}
