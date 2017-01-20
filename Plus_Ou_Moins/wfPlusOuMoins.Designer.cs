@@ -62,6 +62,7 @@
 			this.buttonOptions.TabIndex = 3;
 			this.buttonOptions.Text = "Options";
 			this.buttonOptions.UseVisualStyleBackColor = true;
+			this.buttonOptions.Click += new System.EventHandler(this.buttonOptions_Click);
 			// 
 			// titreDuJeu
 			// 

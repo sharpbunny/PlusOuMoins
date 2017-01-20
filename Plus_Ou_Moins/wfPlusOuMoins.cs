@@ -26,5 +26,11 @@ namespace Plus_Ou_Moins
 		{
 			Application.Exit();
 		}
+
+		private void buttonOptions_Click(object sender, EventArgs e)
+		{
+			OptionsWF menuOption = new OptionsWF();
+			menuOption.ShowDialog();
+		}
 	}
 }
