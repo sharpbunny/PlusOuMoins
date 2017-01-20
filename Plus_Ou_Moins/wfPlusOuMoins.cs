@@ -21,5 +21,10 @@ namespace Plus_Ou_Moins
 		{
 
 		}
+
+		private void buttonExit_Click(object sender, EventArgs e)
+		{
+			Application.Exit();
+		}
 	}
 }
