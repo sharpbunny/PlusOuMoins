@@ -29,39 +29,58 @@ namespace Plus_Ou_Moins
 			//     LA PARTIE     //
 			//*******************//
 
-				if(args.Length == 0 || args[0] == "jeu" || args[0] == " ")
+			if (args.Length == 0 || args[0] == "jeu" || args[0] == " ")
+			{
+				do
 				{
-					do
+					choixMenuPrincipal = MenuPrincipal();
+					switch (choixMenuPrincipal)
 					{
-						choixMenuPrincipal = MenuPrincipal();
-						switch (choixMenuPrincipal)
-						{
 
-							case 1: // LE JOUEUR CHOISIT DE JOUER.
-								theGame();
-								nombreDePartiesJouees++;
-								break;
+						case 1: // LE JOUEUR CHOISIT DE JOUER.
+							theGame();
+							nombreDePartiesJouees++;
+							break;
 
-							case 2: // Permet de choisir le niveau de difficulté pour le mode 1 joueur.
+						case 2: // Permet de choisir le niveau de difficulté pour le mode 1 joueur.
 
-								break;
+							break;
 
-							case 3: // Affiche les statistiques du joueur.
-								statistiquesDuJoueur(nombreDePartiesJouees, nombreDePartiesOuLOrdinateurADuDevinerLeNombreDuJoueur);
-								break;
+						case 3: // Affiche les statistiques du joueur.
+							statistiquesDuJoueur(nombreDePartiesJouees, nombreDePartiesOuLOrdinateurADuDevinerLeNombreDuJoueur);
+							break;
 
-							case 4: // C'est l'ordinateur qui doit deviner le nombre mystère choisi par le joueur.
-								ordinateurDevineLeNombre();
-								nombreDePartiesOuLOrdinateurADuDevinerLeNombreDuJoueur++;
-								break;
+						case 4: // C'est l'ordinateur qui doit deviner le nombre mystère choisi par le joueur.
+							ordinateurDevineLeNombre();
+							nombreDePartiesOuLOrdinateurADuDevinerLeNombreDuJoueur++;
+							break;
 
-							case 5: // Permet de quitter le programme.
-								Environment.Exit(0);
-								break;
-						}
+						case 5: // Permet de quitter le programme.
+							Environment.Exit(0);
+							break;
+					}
 
-					} while (true);
-				}
+				} while (true);
+			}
+
+			else if (args[0] == "wf" || args[0] == "windowsform" || (args[0] == "windows" && args[1] == "form"))
+			{
+				Console.WriteLine("Application Windows Form");
+				Console.ReadLine();
+				Environment.Exit(0);
+			}
+
+			else if(args[0] == "-version" || args[0] == "-v")
+			{
+				Console.WriteLine("Plus_Ou_Moins version 0.5");
+			}
+
+			else if(args[0] == "-help" || args[0] == "-h")
+			{
+				Console.WriteLine("Jouer au jeu : aucun argument, 'jeu', ' ' ");
+				Console.WriteLine("Windows Form : 'wf', 'windowsform', 'windows form'");
+				Console.WriteLine("Version du Programme : '-version', '-v'");
+			}
 			
 
         } // FIN DU MAIN.
