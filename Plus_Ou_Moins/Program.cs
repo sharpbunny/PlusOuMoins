@@ -13,7 +13,11 @@ namespace Plus_Ou_Moins
         // Déclaration du Générateur du nombre aléatoire.
         static readonly Random numberRandomizer = new Random();
 
-        static void Main(string[] args)
+		//Objet qui permet d'accéder à des données entre les windows form
+		DonnéesPubliques donnees = new DonnéesPubliques();
+		
+
+		static void Main(string[] args)
         {
 			//*******************************//
 			//   DECLARATION DES VARIABLES   //
@@ -66,7 +70,6 @@ namespace Plus_Ou_Moins
 
 			else if (args[0] == "wf" || args[0] == "windowsform" || (args[0] == "windows" && args[1] == "form"))
 			{
-
 				Application.EnableVisualStyles();
 				Application.SetCompatibleTextRenderingDefault(false);
 				wfPlusOuMoins PlusOuMoins = new wfPlusOuMoins();

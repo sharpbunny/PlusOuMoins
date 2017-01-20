@@ -24,7 +24,10 @@ namespace Plus_Ou_Moins
 
 		private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
 		{
-
+			if (comboBox1.SelectedItem.Equals("Novice: 0 à 10"))
+			{
+				
+			}
 		}
 	}
 }
