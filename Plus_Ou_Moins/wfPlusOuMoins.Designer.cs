@@ -29,10 +29,10 @@
 		private void InitializeComponent()
 		{
 			this.buttonExit = new System.Windows.Forms.Button();
-			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.buttonPlay = new System.Windows.Forms.Button();
 			this.buttonOptions = new System.Windows.Forms.Button();
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+			this.titreDuJeu = new System.Windows.Forms.PictureBox();
+			((System.ComponentModel.ISupportInitialize)(this.titreDuJeu)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// buttonExit
@@ -44,15 +44,6 @@
 			this.buttonExit.Text = "Quitter";
 			this.buttonExit.UseVisualStyleBackColor = true;
 			this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
-			// 
-			// pictureBox1
-			// 
-			this.pictureBox1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-			this.pictureBox1.Location = new System.Drawing.Point(0, -1);
-			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(311, 108);
-			this.pictureBox1.TabIndex = 1;
-			this.pictureBox1.TabStop = false;
 			// 
 			// buttonPlay
 			// 
@@ -72,6 +63,16 @@
 			this.buttonOptions.Text = "Options";
 			this.buttonOptions.UseVisualStyleBackColor = true;
 			// 
+			// titreDuJeu
+			// 
+			this.titreDuJeu.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
+			this.titreDuJeu.BackgroundImage = global::Plus_Ou_Moins.Properties.Resources.Titre_Du_Jeu1;
+			this.titreDuJeu.Location = new System.Drawing.Point(0, 0);
+			this.titreDuJeu.Name = "titreDuJeu";
+			this.titreDuJeu.Size = new System.Drawing.Size(310, 100);
+			this.titreDuJeu.TabIndex = 1;
+			this.titreDuJeu.TabStop = false;
+			// 
 			// wfPlusOuMoins
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -79,12 +80,12 @@
 			this.ClientSize = new System.Drawing.Size(310, 374);
 			this.Controls.Add(this.buttonOptions);
 			this.Controls.Add(this.buttonPlay);
-			this.Controls.Add(this.pictureBox1);
+			this.Controls.Add(this.titreDuJeu);
 			this.Controls.Add(this.buttonExit);
 			this.Name = "wfPlusOuMoins";
 			this.Text = "Plus Ou Moins";
 			this.Load += new System.EventHandler(this.wfPlusOuMoins_Load);
-			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.titreDuJeu)).EndInit();
 			this.ResumeLayout(false);
 
 		}
@@ -92,7 +93,7 @@
 		#endregion
 
 		private System.Windows.Forms.Button buttonExit;
-		private System.Windows.Forms.PictureBox pictureBox1;
+		private System.Windows.Forms.PictureBox titreDuJeu;
 		private System.Windows.Forms.Button buttonPlay;
 		private System.Windows.Forms.Button buttonOptions;
 	}
