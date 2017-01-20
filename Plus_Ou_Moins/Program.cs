@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Plus_Ou_Moins
 {
@@ -65,8 +66,10 @@ namespace Plus_Ou_Moins
 
 			else if (args[0] == "wf" || args[0] == "windowsform" || (args[0] == "windows" && args[1] == "form"))
 			{
-				Console.WriteLine("Application Windows Form");
-				Console.ReadLine();
+				wfPlusOuMoins PlusOuMoins = new wfPlusOuMoins();
+				Application.EnableVisualStyles();
+				Application.SetCompatibleTextRenderingDefault(false);
+				Application.Run(PlusOuMoins);
 				Environment.Exit(0);
 			}
 
