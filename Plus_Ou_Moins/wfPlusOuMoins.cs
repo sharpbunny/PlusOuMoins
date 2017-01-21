@@ -22,15 +22,25 @@ namespace Plus_Ou_Moins
 
 		}
 
+        //Evenement lorsque l'on clique sur le bouton "Quitter"
 		private void buttonExit_Click(object sender, EventArgs e)
 		{
 			Application.Exit();
 		}
 
+        //Evenement lorsque l'on clique sur le bouton "Options"
 		private void buttonOptions_Click(object sender, EventArgs e)
 		{
+            //On charge la fenêtre des options
 			OptionsWF menuOption = new OptionsWF();
 			menuOption.ShowDialog();
 		}
-	}
+
+        //Evenement lorsque l'on clique sur le bouton "Jouer"
+        private void buttonPlay_Click(object sender, EventArgs e)
+        {
+            Jeu partie = new Jeu();
+            partie.ShowDialog();
+        }
+    }
 }
