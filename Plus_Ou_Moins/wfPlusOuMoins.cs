@@ -15,6 +15,7 @@ namespace Plus_Ou_Moins
 		public wfPlusOuMoins()
 		{
 			InitializeComponent();
+            
 		}
 
 		private void wfPlusOuMoins_Load(object sender, EventArgs e)

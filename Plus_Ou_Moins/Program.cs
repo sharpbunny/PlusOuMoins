@@ -14,7 +14,8 @@ namespace Plus_Ou_Moins
         static readonly Random numberRandomizer = new Random();
 
 		//Objet qui permet d'accéder à des données entre les windows form
-		DonnéesPubliques donnees = new DonnéesPubliques();
+		DonneesPubliques donnees = new DonneesPubliques();
+        
         
 		
 

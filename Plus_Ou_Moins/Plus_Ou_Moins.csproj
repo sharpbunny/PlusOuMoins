@@ -45,7 +45,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DonnéesPubliques.cs" />
+    <Compile Include="DonneesPubliques.cs" />
+    <Compile Include="Jeu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Jeu.Designer.cs">
+      <DependentUpon>Jeu.cs</DependentUpon>
+    </Compile>
     <Compile Include="OptionsWF.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +76,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Jeu.resx">
+      <DependentUpon>Jeu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="OptionsWF.resx">
       <DependentUpon>OptionsWF.cs</DependentUpon>
     </EmbeddedResource>
