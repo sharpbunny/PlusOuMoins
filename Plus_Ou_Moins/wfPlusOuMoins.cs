@@ -12,6 +12,7 @@ namespace Plus_Ou_Moins
 {
 	public partial class wfPlusOuMoins : Form
 	{
+        public int difficulte;
 		public wfPlusOuMoins()
 		{
 			InitializeComponent();
@@ -33,7 +34,7 @@ namespace Plus_Ou_Moins
 		private void buttonOptions_Click(object sender, EventArgs e)
 		{
             //On charge la fenêtre des options
-			OptionsWF menuOption = new OptionsWF();
+			OptionsWF menuOption = new OptionsWF(this);
 			menuOption.ShowDialog();
 		}
 
@@ -42,6 +43,12 @@ namespace Plus_Ou_Moins
         {
             Jeu partie = new Jeu();
             partie.ShowDialog();
+        }
+
+        //Evenement lorsque l'on clique sur le bouton "Statistiques"
+        private void buttonStats_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

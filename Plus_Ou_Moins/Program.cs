@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Plus_Ou_Moins;
 
 namespace Plus_Ou_Moins
 {
@@ -14,10 +15,8 @@ namespace Plus_Ou_Moins
         static readonly Random numberRandomizer = new Random();
 
 		//Objet qui permet d'accéder à des données entre les windows form
-		DonneesPubliques donnees = new DonneesPubliques();
-        
-        
-		
+		     
+        	
 
 		static void Main(string[] args)
         {

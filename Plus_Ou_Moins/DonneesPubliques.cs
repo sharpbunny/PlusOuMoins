@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Plus_Ou_Moins
 {
-    class DonneesPubliques
+    public class DonneesPubliques
     {
         public int choixDifficulte;
 

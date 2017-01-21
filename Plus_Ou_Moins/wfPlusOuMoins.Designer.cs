@@ -33,14 +33,16 @@
             this.buttonOptions = new System.Windows.Forms.Button();
             this.titreDuJeu = new System.Windows.Forms.PictureBox();
             this.buttonComputer = new System.Windows.Forms.Button();
+            this.buttonStats = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.titreDuJeu)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonExit
             // 
-            this.buttonExit.Location = new System.Drawing.Point(93, 293);
+            this.buttonExit.Location = new System.Drawing.Point(93, 290);
             this.buttonExit.Name = "buttonExit";
-            this.buttonExit.Size = new System.Drawing.Size(128, 51);
+            this.buttonExit.Size = new System.Drawing.Size(128, 36);
             this.buttonExit.TabIndex = 0;
             this.buttonExit.Text = "Quitter";
             this.buttonExit.UseVisualStyleBackColor = true;
@@ -50,7 +52,7 @@
             // 
             this.buttonPlay.Location = new System.Drawing.Point(93, 122);
             this.buttonPlay.Name = "buttonPlay";
-            this.buttonPlay.Size = new System.Drawing.Size(128, 51);
+            this.buttonPlay.Size = new System.Drawing.Size(128, 36);
             this.buttonPlay.TabIndex = 2;
             this.buttonPlay.Text = "Jouer";
             this.buttonPlay.UseVisualStyleBackColor = true;
@@ -58,9 +60,9 @@
             // 
             // buttonOptions
             // 
-            this.buttonOptions.Location = new System.Drawing.Point(93, 236);
+            this.buttonOptions.Location = new System.Drawing.Point(93, 206);
             this.buttonOptions.Name = "buttonOptions";
-            this.buttonOptions.Size = new System.Drawing.Size(128, 51);
+            this.buttonOptions.Size = new System.Drawing.Size(128, 36);
             this.buttonOptions.TabIndex = 3;
             this.buttonOptions.Text = "Options";
             this.buttonOptions.UseVisualStyleBackColor = true;
@@ -78,12 +80,32 @@
             // 
             // buttonComputer
             // 
-            this.buttonComputer.Location = new System.Drawing.Point(93, 179);
+            this.buttonComputer.Location = new System.Drawing.Point(93, 164);
             this.buttonComputer.Name = "buttonComputer";
-            this.buttonComputer.Size = new System.Drawing.Size(128, 51);
+            this.buttonComputer.Size = new System.Drawing.Size(128, 36);
             this.buttonComputer.TabIndex = 4;
             this.buttonComputer.Text = "L\'ordinateur joue";
             this.buttonComputer.UseVisualStyleBackColor = true;
+            // 
+            // buttonStats
+            // 
+            this.buttonStats.Location = new System.Drawing.Point(93, 248);
+            this.buttonStats.Name = "buttonStats";
+            this.buttonStats.Size = new System.Drawing.Size(128, 36);
+            this.buttonStats.TabIndex = 5;
+            this.buttonStats.Text = "Statistiques";
+            this.buttonStats.UseVisualStyleBackColor = true;
+            this.buttonStats.Click += new System.EventHandler(this.buttonStats_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.Red;
+            this.label1.Location = new System.Drawing.Point(90, 343);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(80, 13);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "Facile : 0 à 100";
             // 
             // wfPlusOuMoins
             // 
@@ -91,6 +113,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Plus_Ou_Moins.Properties.Resources.espace1;
             this.ClientSize = new System.Drawing.Size(310, 374);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.buttonStats);
             this.Controls.Add(this.buttonComputer);
             this.Controls.Add(this.buttonOptions);
             this.Controls.Add(this.buttonPlay);
@@ -101,6 +125,7 @@
             this.Load += new System.EventHandler(this.wfPlusOuMoins_Load);
             ((System.ComponentModel.ISupportInitialize)(this.titreDuJeu)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
 		}
 
@@ -111,5 +136,7 @@
 		private System.Windows.Forms.Button buttonPlay;
 		private System.Windows.Forms.Button buttonOptions;
 		private System.Windows.Forms.Button buttonComputer;
-	}
+        private System.Windows.Forms.Button buttonStats;
+        public System.Windows.Forms.Label label1;
+    }
 }
