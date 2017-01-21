@@ -13,9 +13,6 @@ namespace Plus_Ou_Moins
     {
         // Déclaration du Générateur du nombre aléatoire.
         static readonly Random numberRandomizer = new Random();
-
-		//Objet qui permet d'accéder à des données entre les windows form
-		     
         	
 
 		static void Main(string[] args)

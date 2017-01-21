@@ -6,13 +6,9 @@ using System.Threading.Tasks;
 
 namespace Plus_Ou_Moins
 {
-    public class DonneesPubliques
+    public static class DonneesPubliques
     {
-        public int choixDifficulte;
+        public static int choixDifficulte;
 
-        public void SetDifficulte(int difficult)
-        {
-            this.choixDifficulte = difficult;
-        }
     }
 }
