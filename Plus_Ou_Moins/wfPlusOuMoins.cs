@@ -42,6 +42,7 @@ namespace Plus_Ou_Moins
         private void buttonPlay_Click(object sender, EventArgs e)
         {
             Jeu partie = new Jeu();
+            
             partie.ShowDialog();
         }
 

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.titreDuJeu = new System.Windows.Forms.PictureBox();
+            this.textBoxDifficulte = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.titreDuJeu)).BeginInit();
             this.SuspendLayout();
             // 
@@ -42,22 +43,34 @@
             this.titreDuJeu.TabIndex = 2;
             this.titreDuJeu.TabStop = false;
             // 
+            // textBoxDifficulte
+            // 
+            this.textBoxDifficulte.Location = new System.Drawing.Point(0, 97);
+            this.textBoxDifficulte.Name = "textBoxDifficulte";
+            this.textBoxDifficulte.ReadOnly = true;
+            this.textBoxDifficulte.Size = new System.Drawing.Size(310, 20);
+            this.textBoxDifficulte.TabIndex = 3;
+            this.textBoxDifficulte.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // Jeu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = global::Plus_Ou_Moins.Properties.Resources.espace1;
             this.ClientSize = new System.Drawing.Size(310, 374);
+            this.Controls.Add(this.textBoxDifficulte);
             this.Controls.Add(this.titreDuJeu);
             this.Name = "Jeu";
             this.Text = "Plus Ou Moins";
             ((System.ComponentModel.ISupportInitialize)(this.titreDuJeu)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.PictureBox titreDuJeu;
+        private System.Windows.Forms.TextBox textBoxDifficulte;
     }
 }

@@ -21,7 +21,7 @@ namespace Plus_Ou_Moins
 			//   DECLARATION DES VARIABLES   //
 			//*******************************//
 			int choixMenuPrincipal, nombreDePartiesJouees = 0, nombreDePartiesOuLOrdinateurADuDevinerLeNombreDuJoueur = 0;
-
+            string difficulteChoisie = null;
             // debug display args passed in command line.
             foreach (string arg in args)
             {
@@ -41,13 +41,13 @@ namespace Plus_Ou_Moins
 					{
 
 						case 1: // LE JOUEUR CHOISIT DE JOUER.
-							theGame();
+							theGame(difficulteChoisie);
 							nombreDePartiesJouees++;
 							break;
 
 						case 2: // Permet de choisir le niveau de difficulté pour le mode 1 joueur.
-
-							break;
+                            difficulteChoisie = MenuDifficulte();
+                            break;
 
 						case 3: // Affiche les statistiques du joueur.
 							statistiquesDuJoueur(nombreDePartiesJouees, nombreDePartiesOuLOrdinateurADuDevinerLeNombreDuJoueur);
@@ -89,6 +89,36 @@ namespace Plus_Ou_Moins
 			
 
         } // FIN DU MAIN.
+
+        static string MenuDifficulte()
+        {
+            int i = 0;
+            string difficulteChoisie = null;
+            int difficulteInt = 0;
+            string[] difficulte = { "1. Novice : 0 à 10",
+                                    "2. Normal : 0 à 100",
+                                    "3. Difficile : 0 à 500",
+                                    "4. Extrême : 0 à 1000",
+                                    "5. God : 0 à 5000"};
+            Console.WriteLine("\t\t--- Choix de la difficulté ---");
+
+            //Boucle qui permet d'afficher chaque difficulté
+            for(i=0; i<difficulte.Length; i++)
+            {
+                Console.WriteLine("\t\t" + difficulte[i]);
+            }
+
+            //Boucle qui force le joueur à saisir un nombre correct
+            do
+            {
+                Console.WriteLine("\n\t\tVotre choix : ");
+                difficulteChoisie = Console.ReadLine();
+                int.TryParse(difficulteChoisie, out difficulteInt);
+                if (difficulteInt < 1 || difficulteInt > 5) Console.WriteLine("Choisissez le nombre correspondant à un menu");
+            } while (difficulteInt < 1 || difficulteInt > 5);
+
+            return difficulteChoisie; 
+        }
 
         static int MenuPrincipal()
         {
@@ -167,9 +197,125 @@ namespace Plus_Ou_Moins
             return choixMenu;
         }
 
-        static void theGame()
+        static void ordinateurDevineLeNombre()
+        {
+            int borneInferieure, borneSuperieure, nombreADeviner, nombreIntermediaire; // Variables déterminées par le joueur.
+            int nombreJoueParLOrdinateur, numberTryComputer;
+            Random nbAleatoire = new Random(); // Nombre aléatoire qui sera choisi par l'ordinateur.
+            string reponse = "";
+
+            do
+            {
+                numberTryComputer = 0;
+
+                Console.WriteLine("Définissez les bornes entre lesquelles l'ordinateur devra deviner le nombre");
+                Console.Write("Borne 1 : "); int.TryParse(Console.ReadLine(), out borneInferieure);
+                Console.Write("Borne 2 : "); int.TryParse(Console.ReadLine(), out borneSuperieure);
+
+                // Si la borne inférieure est supérieure à la borne supérieure, on inverse les valeurs des deux bornes.
+                if (borneInferieure > borneSuperieure)
+                {
+                    nombreIntermediaire = borneInferieure;
+                    borneInferieure = borneSuperieure;
+                    borneSuperieure = nombreIntermediaire;
+                }
+
+                Console.WriteLine("Quel nombre voulez-vous que l'ordinateur devine ?");
+                int.TryParse(Console.ReadLine(), out nombreADeviner);
+
+
+                //******************************************************************************//
+                // BOUCLE QUI CONTIENT LE JEU DE L'ORDINATEUR POUR DETERMINER LE NOMBRE MYSTERE //
+                //******************************************************************************//
+                do
+                {
+                    numberTryComputer++;
+
+                    // Si l'écart entre les bornes est supérieur à 25, l'ordinateur choisit le nombre du milieu
+                    if (borneSuperieure - borneInferieure > 25) nombreJoueParLOrdinateur = (borneInferieure + borneSuperieure) / 2;
+
+                    // Dés que l'écart entre les bornes est inférieur à 25, l'ordinateur choisit des nombres
+                    // aléatoirement entre ces bornes.
+                    else nombreJoueParLOrdinateur = nbAleatoire.Next(borneInferieure, borneSuperieure);
+
+                    // Si le nombre que l'ordinateur a joué est supérieur au nombre à deviner, alors
+                    // la borne supérieure devient égale au nombre que vient de jouer l'ordinateur, car
+                    // il vient d'obtenir l'information que le nombre qu'il cherche ne sera pas supérieur
+                    // au nombre qu'il vient d'essayer.
+                    if (nombreJoueParLOrdinateur > nombreADeviner) borneSuperieure = nombreJoueParLOrdinateur - 1;
+
+                    else if (nombreJoueParLOrdinateur < nombreADeviner) borneInferieure = nombreJoueParLOrdinateur + 1;
+
+                    else Console.WriteLine("L'ordinateur a trouvé le nombre en " + numberTryComputer + " essai" + ((numberTryComputer > 1) ? "s" : "") + "!");
+
+
+                } while (nombreJoueParLOrdinateur != nombreADeviner); //Tant que l'ordinateur n'a pas trouvé le nombre mystère, on reste dans la boucle.
+
+                // Tant que le joueur ne répond pas "yes" ou "no" quand on lui demande de rejouer, on lui repose la question.
+                do
+                {
+                    Console.WriteLine("Voulez-vous faire rejouer l'ordinateur ? yes/no");
+                    reponse = Console.ReadLine();
+                } while (reponse != "yes" && reponse != "no");
+
+            } while (reponse == "yes");
+
+        }
+
+        static void statistiquesDuJoueur(int nbPartiesJouees, int nbPartiesJoueesOrdinateur)
+        {
+            string quitterLeMenuDesStatistiques = "";
+            Console.WriteLine("\t\t--- Statistiques du joueur ---");
+            Console.WriteLine("\t\tParties jouées : " + nbPartiesJouees);
+            Console.WriteLine("\t\tParties jouées par l'ordinateur : " + nbPartiesJoueesOrdinateur);
+
+            // Boucle qui permet de forcer l'utilisateur à taper 1 pour retourner au menu principal.
+            do
+            {
+                Console.Write("Tapez 1 pour retourner au menu principal : ");
+                quitterLeMenuDesStatistiques = Console.ReadLine();
+                Console.WriteLine("\nTapez 1 pour quitter !!!\n");
+            } while (quitterLeMenuDesStatistiques != "1");
+
+            Console.Clear(); // Quand le joueur quitte ce menu, on efface ce qui est affiché à l'écran.
+        }
+
+        static void theGame(string niveauDeDifficulte)
         {
             int numberRandomized, miniRandom = 0, maxiRandom = 100, numberUser = miniRandom - 1;
+
+            switch (niveauDeDifficulte)
+            {
+                //Novice
+                case "1":
+                    maxiRandom = 10;
+                    break;
+
+                //Normal
+                case "2":
+                    maxiRandom = 100;
+                    break;
+
+                //Difficile
+                case "3":
+                    maxiRandom = 500;
+                    break;
+
+                //Extrême
+                case "4":
+                    maxiRandom = 1000;
+                    break;
+
+                //God
+                case "5":
+                    maxiRandom = 5000;
+                    break;
+
+                default:
+                    maxiRandom = 100;
+                    break;
+            }
+
             bool conversion = false;
             numberRandomized = numberRandomizer.Next(miniRandom, maxiRandom); // Génération du nombre à trouver.
             int numberTry = 0;
@@ -212,88 +358,9 @@ namespace Plus_Ou_Moins
             Console.Clear();
         }
 
-        static void statistiquesDuJoueur(int nbPartiesJouees, int nbPartiesJoueesOrdinateur)
-        {
-            string quitterLeMenuDesStatistiques = "";
-            Console.WriteLine("\t\t--- Statistiques du joueur ---");
-            Console.WriteLine("\t\tParties jouées : " + nbPartiesJouees);
-            Console.WriteLine("\t\tParties jouées par l'ordinateur : " + nbPartiesJoueesOrdinateur);
-
-            // Boucle qui permet de forcer l'utilisateur à taper 1 pour retourner au menu principal.
-            do
-            {
-                Console.Write("Tapez 1 pour retourner au menu principal : ");
-                quitterLeMenuDesStatistiques = Console.ReadLine();
-                Console.WriteLine("\nTapez 1 pour quitter !!!\n");
-            } while (quitterLeMenuDesStatistiques != "1");
-
-            Console.Clear(); // Quand le joueur quitte ce menu, on efface ce qui est affiché à l'écran.
-        }
-
-        static void ordinateurDevineLeNombre()
-        {
-            int borneInferieure, borneSuperieure, nombreADeviner, nombreIntermediaire; // Variables déterminées par le joueur.
-            int nombreJoueParLOrdinateur, numberTryComputer;
-            Random nbAleatoire = new Random(); // Nombre aléatoire qui sera choisi par l'ordinateur.
-            string reponse = "";
-
-			do
-			{
-				numberTryComputer = 0;
-
-				Console.WriteLine("Définissez les bornes entre lesquelles l'ordinateur devra deviner le nombre");
-				Console.Write("Borne 1 : "); int.TryParse(Console.ReadLine(), out borneInferieure);
-				Console.Write("Borne 2 : "); int.TryParse(Console.ReadLine(), out borneSuperieure);
-
-                // Si la borne inférieure est supérieure à la borne supérieure, on inverse les valeurs des deux bornes.
-                if (borneInferieure > borneSuperieure)
-                {
-                    nombreIntermediaire = borneInferieure;
-                    borneInferieure = borneSuperieure;
-                    borneSuperieure = nombreIntermediaire;
-                }
-
-				Console.WriteLine("Quel nombre voulez-vous que l'ordinateur devine ?");
-				int.TryParse(Console.ReadLine(), out nombreADeviner);
 
 
-                //******************************************************************************//
-                // BOUCLE QUI CONTIENT LE JEU DE L'ORDINATEUR POUR DETERMINER LE NOMBRE MYSTERE //
-                //******************************************************************************//
-                do
-                {
-                    numberTryComputer++;
 
-                    // Si l'écart entre les bornes est supérieur à 25, l'ordinateur choisit le nombre du milieu
-                    if (borneSuperieure - borneInferieure > 25) nombreJoueParLOrdinateur = (borneInferieure + borneSuperieure) / 2;
-
-                    // Dés que l'écart entre les bornes est inférieur à 25, l'ordinateur choisit des nombres
-                    // aléatoirement entre ces bornes.
-                    else nombreJoueParLOrdinateur = nbAleatoire.Next(borneInferieure, borneSuperieure);
-
-                    // Si le nombre que l'ordinateur a joué est supérieur au nombre à deviner, alors
-                    // la borne supérieure devient égale au nombre que vient de jouer l'ordinateur, car
-                    // il vient d'obtenir l'information que le nombre qu'il cherche ne sera pas supérieur
-                    // au nombre qu'il vient d'essayer.
-                    if (nombreJoueParLOrdinateur > nombreADeviner) borneSuperieure = nombreJoueParLOrdinateur - 1;
-
-					else if (nombreJoueParLOrdinateur < nombreADeviner) borneInferieure = nombreJoueParLOrdinateur + 1;
-
-					else Console.WriteLine("L'ordinateur a trouvé le nombre en " + numberTryComputer + " essai" + ((numberTryComputer > 1) ? "s" : "") + "!");
-
-
-				} while (nombreJoueParLOrdinateur != nombreADeviner); //Tant que l'ordinateur n'a pas trouvé le nombre mystère, on reste dans la boucle.
-
-                // Tant que le joueur ne répond pas "yes" ou "no" quand on lui demande de rejouer, on lui repose la question.
-                do
-                {
-                    Console.WriteLine("Voulez-vous faire rejouer l'ordinateur ? yes/no");
-                    reponse = Console.ReadLine();
-                } while (reponse != "yes" && reponse != "no");
-
-			} while (reponse == "yes");
-
-		}
 
 	}
 }
