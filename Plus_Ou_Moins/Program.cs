@@ -77,7 +77,7 @@ namespace Plus_Ou_Moins
 
 			else if(args[0] == "-version" || args[0] == "-v")
 			{
-				Console.WriteLine("Plus_Ou_Moins version 0.5");
+				Console.WriteLine("Plus_Ou_Moins version 0.7");
 			}
 
 			else if(args[0] == "-help" || args[0] == "-h")
@@ -220,8 +220,21 @@ namespace Plus_Ou_Moins
                     borneSuperieure = nombreIntermediaire;
                 }
 
-                Console.WriteLine("Quel nombre voulez-vous que l'ordinateur devine ?");
-                int.TryParse(Console.ReadLine(), out nombreADeviner);
+                // Tant que le joueur essaie de rentrer un nombre qui n'est pas compris entre les bornes,
+                // on lui fait retaper un nombre.
+                do
+                {
+                    Console.WriteLine("Quel nombre voulez-vous que l'ordinateur devine ?");
+                    int.TryParse(Console.ReadLine(), out nombreADeviner);
+                    if(nombreADeviner < borneInferieure || nombreADeviner > borneSuperieure)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("\nVous devez entrer un nombre compris entre les bornes que vous avez définies");
+                        Console.ResetColor();
+                    }
+
+                } while (nombreADeviner < borneInferieure || nombreADeviner > borneSuperieure);
+
 
 
                 //******************************************************************************//
@@ -357,9 +370,6 @@ namespace Plus_Ou_Moins
             Console.ReadLine();
             Console.Clear();
         }
-
-
-
 
 
 	}
