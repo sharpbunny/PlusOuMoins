@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Plus_Ou_Moins;
+using System.Data.SQLite;
 
 namespace Plus_Ou_Moins
 {
