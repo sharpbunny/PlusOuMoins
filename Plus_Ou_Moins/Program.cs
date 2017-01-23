@@ -36,6 +36,7 @@ namespace Plus_Ou_Moins
 			//     LA PARTIE     //
 			//*******************//
 
+            //Argument permettant de jouer au plus ou moins en mode console
 			if (args.Length == 0 || args[0] == "jeu" || args[0] == " ")
 			{
 				do
@@ -70,6 +71,7 @@ namespace Plus_Ou_Moins
 				} while (true);
 			}
 
+            //Arguments permettant de jouer au plus ou moins avec l'interface graphique windows form
 			else if (args[0] == "wf" || args[0] == "windowsform" || (args[0] == "windows" && args[1] == "form"))
 			{
 				Application.EnableVisualStyles();
@@ -79,11 +81,20 @@ namespace Plus_Ou_Moins
 				Environment.Exit(0);
 			}
 
+            //Arguments qui permettent d'afficher les différentes versions du programme
 			else if(args[0] == "-version" || args[0] == "-v")
 			{
-				Console.WriteLine("Plus_Ou_Moins version 0.7");
+                Console.WriteLine("Version 0.1 : Possibilité de jouer au Plus ou Moins.");
+                Console.WriteLine("Version 0.2 : Possibilité de jouer plusieurs fois de suite au Plus ou Moins.");
+                Console.WriteLine("Version 0.3 : Implémentation du menu principal.");
+                Console.WriteLine("Version 0.4 : Possibilité d'afficher les statistiques à partir du menu principal.");
+                Console.WriteLine("Version 0.5 : Implémentation des arguments et de l'interface graphique windows form.");
+                Console.WriteLine("Version 0.6 : Possibilité de faire deviner un chiffre à l'ordinateur");
+				Console.WriteLine("Version 0.65 : Amélioration de l'intelligence de l'ordinateur");
+                Console.WriteLine("Version 0.7 : Implémentation d'une base de données SQLite");
 			}
 
+            //Arguments expliquant tous les arguments disponibles au lancement du plus ou moins
 			else if(args[0] == "-help" || args[0] == "-h")
 			{
 				Console.WriteLine("Jouer au jeu : aucun argument, 'jeu', ' ' ");
