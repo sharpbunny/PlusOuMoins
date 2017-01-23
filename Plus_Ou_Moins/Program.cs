@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,6 +29,8 @@ namespace Plus_Ou_Moins
             {
                 //Console.WriteLine(arg);
             }
+			// init
+			initGame();
 
 			//*******************//
 			//     LA PARTIE     //
@@ -91,7 +94,14 @@ namespace Plus_Ou_Moins
 
         } // FIN DU MAIN.
 
-        static string MenuDifficulte()
+		private static void initGame()
+		{
+			// init database
+			Console.WriteLine(File.Exists("GameDatabase.sqlite") ? "File exists." : "File does not exist.");
+			//SQLiteConnection.CreateFile("GameDatabase.sqlite");
+		}
+
+		static string MenuDifficulte()
         {
             int i = 0;
             string difficulteChoisie = null;
